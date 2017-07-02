@@ -1,0 +1,21 @@
+\
+mkdir -p /usr/share/vim/vim74/bundle/;\
+cd source;\              
+tar xzvf ctags-5.8_better_php_parser.tar.gz;\
+cd ctags;\                
+make distclean;\ 
+./configure;\             
+make && make install;\    
+cd ../;\
+cp -rf Vundle.vim syntastic DoxygenToolkit.vim taglist.vim neocomplete nerdtree /usr/share/vim/vim74/bundle/;\
+cd ../;\
+cat - /usr/share/vim/vimrc < vim_ide_config/vundle_vimrc > /usr/share/vim/vimrcbak;\
+mv -f /usr/share/vim/vimrcbak /usr/share/vim/vimrc;\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/doxygentoolkit_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/neocomplete_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/taglist_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/fold_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/nerdtree_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/syntastic_vimrc"
+
+

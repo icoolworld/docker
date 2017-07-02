@@ -1,0 +1,5 @@
+
+"====fold setting vim折叠设置======
+set foldenable
+set foldmethod=manual
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc':'zo')<CR>

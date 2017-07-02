@@ -1,0 +1,16 @@
+"文档注释插件DoxygenToolkit
+let g:DoxygenToolkit_commentType = "php"
+let g:DoxygenToolkit_authorName="coolbaby"
+let s:licenseTag = "Copyright(C)\<enter>"
+let s:licenseTag = s:licenseTag . "For free\<enter>"
+let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+let g:DoxygenToolkit_briefTag_pre="@desc function  "
+let g:DoxygenToolkit_paramTag_pre="@params [type] "
+let g:DoxygenToolkit_returnTag="@return "
+"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+"let g:DoxygenToolkit_authorName="Mathias Lorente"
+"let g:DoxygenToolkit_licenseTag="My own license"

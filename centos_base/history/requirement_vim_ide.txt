@@ -1,0 +1,21 @@
+\
+cp -r source/DoxygenToolkit.vim/plugin/ /usr/share/vim/vim74/;\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/doxygentoolkit_vimrc";\
+cd source/neocomplete;\
+cp -r autoload doc plugin /usr/share/vim/vim74/;\
+cd ../../;\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/neocomplete_vimrc";\
+cd source/;\
+tar xzvf ctags-5.8_better_php_parser.tar.gz;\
+cd ctags;\
+./configure;\
+make && make install;\
+cd ../;\
+unzip taglist_46.zip -d taglist;\
+cd taglist;\
+cp -r doc plugin /usr/share/vim/vim74/;\
+cd ../../;\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/taglist_vimrc";\
+cat >> /usr/share/vim/vimrc < "vim_ide_config/fold_vimrc";\
+
+

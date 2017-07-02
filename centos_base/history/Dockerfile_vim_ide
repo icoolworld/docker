@@ -1,0 +1,6 @@
+#从Centos6.7制作Nginx镜像
+FROM centos_base
+MAINTAINER coolbaby
+ADD . /build
+WORKDIR /build
+RUN ./requirement_vim_ide.txt

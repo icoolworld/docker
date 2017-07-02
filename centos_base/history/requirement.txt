@@ -1,0 +1,5 @@
+yum -y install wget curl tar zip unzip make gcc git perl pcre-devel openssl-devel subversion ;\
+yum -y install libtool automake autoconf install gcc-c++;\
+yum -y install libxml2-devel zlib-devel bzip2-devel;\
+yum -y install ncurses-devel readline-devel;\
+yum -y install vim vim-enhanced vim-common vim-minimal vim-filesystem;\

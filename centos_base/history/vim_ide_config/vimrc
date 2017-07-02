@@ -1,0 +1,246 @@
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+   set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+set nocompatible        " Use Vim defaults (much better!)
+set bs=indent,eol,start         " allow backspacing over everything in insert mode
+"set ai                 " always set autoindenting on
+"set backup             " keep a backup file
+set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+                        " than 50 lines of registers
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+  augroup redhat
+  autocmd!
+  " In text files, always limit the width of text to 78 characters
+  " autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+  autocmd BufNewFile,BufReadPre /media/*,/run/media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
+  " start with spec file template
+  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
+  augroup END 
+endif
+
+if has("cscope") && filereadable("/usr/bin/cscope")
+   set csprg=/usr/bin/cscope
+   set csto=0
+   set cst 
+   set nocsverb
+   " add any database in current directory
+      if filereadable("cscope.out")
+      cs add $PWD/cscope.out
+   " else add database pointed to by environment
+   elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+   endif
+   set csverb
+endif
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+filetype plugin on
+
+if &term=="xterm"
+     set t_Co=8
+     set t_Sb=^[[4%dm
+     set t_Sf=^[[3%dm
+endif
+
+" Don't wake up system with blinking cursor:
+" http://www.linuxpowertop.org/known.php
+let &guicursor = &guicursor . ",a:blinkon0"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 一般设定 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 设定默认解码 
+set fenc=utf-8
+set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
+"打开支持编码的文件
+set fileencodings=uft8-bom,utf8,gbk,gb2312,big5,latin1
+
+" 不要使用vi的键盘模式，而是vim自己的 
+set nocompatible
+
+" history文件中需要记录的行数 
+set history=100
+
+" 在处理未保存或只读文件的时候，弹出确认 
+"set confirm
+
+" 与windows共享剪贴板 
+set clipboard+=unnamed
+
+" 侦测文件类型 
+filetype on
+
+" 载入文件类型插件 
+filetype plugin on
+
+" 为特定文件类型载入相关缩进文件 
+filetype indent on
+
+" 保存全局变量 
+"set viminfo+=!
+
+
+" 带有如下符号的单词不要被换行分割 
+"set iskeyword+=_,$,@,%,#,-
+
+" 语法高亮 
+"syntax on
+
+" 高亮字符，让其不受100列限制 
+:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
+:match OverLength '\%101v.*'
+
+" 状态行颜色 
+highlight StatusLine guifg=SlateBlue guibg=Yellow
+highlight StatusLineNC guifg=Gray guibg=White
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 文件设置 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 不要备份文件（根据自己需要取舍） 
+"set nobackup
+
+" 不要生成swap文件，当buffer被丢弃的时候隐藏它 
+"setlocal noswapfile
+"set bufhidden=hide
+
+" 字符间插入的像素行数目 
+"set linespace=0
+
+" 增强模式中的命令行自动完成操作 
+"set wildmenu
+
+" 在状态行上显示光标所在位置的行号和列号 
+set ruler
+set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%)
+
+
+" 命令行（在状态行下）的高度，默认为1，这里是2 
+set cmdheight=1
+
+" 使回格键（backspace）正常处理indent, eol, start等 
+"set backspace=2
+
+" 允许backspace和光标键跨越行边界 
+"set whichwrap+=<,>,h,l
+
+" 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位） 
+"set mouse=a 
+"set selection=exclusive
+"set selectmode=mouse,key
+
+" 启动的时候不显示那个援助索马里儿童的提示 
+"set shortmess=atI
+
+" 通过使用: commands命令，告诉我们文件的哪一行被改变过 
+set report=0
+
+" 不让vim发出讨厌的滴滴声 
+set noerrorbells
+
+" 在被分割的窗口间显示空白，便于阅读 
+"set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 搜索和匹配 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 高亮显示匹配的括号 
+set showmatch
+
+
+" 匹配括号高亮的时间（单位是十分之一秒） 
+set matchtime=5
+
+" 在搜索的时候忽略大小写 
+"set ignorecase
+
+" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索） 
+"set incsearch
+
+" 输入:set list命令是应该显示些啥？ 
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
+
+" 光标移动到buffer的顶部和底部时保持3行距离 
+set scrolloff=3
+
+" 不要闪烁 
+set novisualbell
+
+" 我的状态行显示的内容（包括文件类型和解码） 
+set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%Y/%m/%d/\ -\ %H:%M\")}
+
+" 总是显示状态行 
+set laststatus=2
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 文本格式和排版 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 自动格式化 
+set formatoptions=tcrqn
+
+" 继承前一行的缩进方式，特别适用于多行注释 
+set autoindent
+
+" 为C程序提供自动缩进 
+set smartindent
+
+" 使用C样式的缩进 
+set cindent
+
+" 制表符为4 
+set tabstop=4
+
+" 统一缩进为4 
+set softtabstop=4
+set shiftwidth=4
+
+" 不要用空格代替制表符 
+"set noexpandtab
+
+" 不要换行 
+set nowrap
+
+" 在行和段开始处使用制表符 
+"set smarttab
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" Autocommands 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" 只在下列文件类型被侦测到的时候显示行号，普通文本文件不显示 
+
+if has("autocmd")
+"autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby set number
+"autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby 
+autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
+autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o
+autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
+"autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim 
+"autocmd BufReadPost * 
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe " normal g`\"" |
+\ endif
+endif "has("autocmd") 
+
+
+
+" 高亮显示普通txt文件（需要txt.vim脚本） 
+au BufRead,BufNewFile * setfiletype txt
