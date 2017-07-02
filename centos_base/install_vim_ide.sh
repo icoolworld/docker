@@ -12,14 +12,21 @@ make -j && make install;
 # 安装语法检查器
 
 #jshint js语法检查
+#@see http://jshint.com/install/
+
 cnpm install -g jshint
 ln -s /usr/local/node-v6.11.0-linux-x64/bin/jshint /usr/bin/jshint
 
-# shellcheck shell语法检查shellcheck需要先安装cabal
+# shell语法检查shellcheck需要先安装cabal
 #yum install cabal-rpm.x86_64
 #cd syntastic_checker/shellcheck/ShellCheck
 #cabal install
 #cd ../../../
+
+# python 语法检查flake8 
+#@see https://gitlab.com/pycqa/flake8
+#@see http://flake8.pycqa.org/en/latest/index.html#quickstart
+python -m pip install flake8
 
 
 # vim配置
