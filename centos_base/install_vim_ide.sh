@@ -9,6 +9,21 @@ make distclean;
 ./configure
 make -j && make install;
 
+# 安装语法检查器
+
+#jshint js语法检查
+cnpm install -g jshint
+ln -s /usr/local/node-v6.11.0-linux-x64/bin/jshint /usr/bin/jshint
+
+# shellcheck shell语法检查shellcheck需要先安装cabal
+#yum install cabal-rpm.x86_64
+#cd syntastic_checker/shellcheck/ShellCheck
+#cabal install
+#cd ../../../
+
+
+# vim配置
+
 cd ../
 
 cp -r ./vimrc/ ~/.vim_runtime
@@ -16,9 +31,6 @@ cp -r ./vimrc/ ~/.vim_runtime
 
 # 配置vimrc,及安装相关vim插件[代码自动补全,语法检查,查找，目录树，代码注释，区域选择，多行编辑等],打造IDE开发环境
 source ./vimrc/install_awesome_vimrc.sh
-rm -rf /build/
 
-#install syntastic checker 语法检查
-#jshint
-cnpm install -g jshint
-ln -s /usr/local/node-v6.11.0-linux-x64/bin/jshint /usr/bin/jshint
+#清理源文件
+rm -rf /build/

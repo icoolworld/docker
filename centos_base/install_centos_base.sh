@@ -101,6 +101,10 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 #cnpm install [name]
 ln -s /usr/local/node-v6.11.0-linux-x64/bin/cnpm /usr/bin/cnpm
 
+# install epel yum
+#rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+#rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm
 
 cd ../
 source ./install_vim_ide.sh
