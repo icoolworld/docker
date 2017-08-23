@@ -108,6 +108,8 @@ export PATH
     #GRANT授权
     mysql -uroot -p123456 -e  "GRANT ALL ON mywork.* TO 'work'@'localhost';"
 
+    cd /
+    rm -rf ${BASEDIR} /build/mysql/source
 
     echo "|--> End Mysql environment: "
 }
