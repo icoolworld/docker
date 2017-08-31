@@ -16,8 +16,22 @@ yum -y install libxml2-devel zlib-devel bzip2 bzip2-devel;
 yum -y install ncurses-devel readline-devel;
 yum -y remove vim vim-enhanced vim-common vim-minimal vim-filesystem;
 
+#timezone set
+rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+#localedef tools,languages
+#yum -y install kde-l10n-Chinese && yum -y reinstall glibc-common
+yum -y reinstall glibc glibc-common
+
+#default language set
+echo LANG="en_US.UTF-8" >> /etc/sysconfig/i18n
+#localedef -c -f UTF-8 -i zh_CN zh_CN.utf
+#export LC_ALL zh_CN.utf8
+#localedef -c -f UTF-8 -i en_US en_US.utf8
+#export LC_ALL en_US.utf8
+
 #进入源码目录
-cd source/ 
+cd source/
 
 #安装lua|luajit
 tar zxf lua-5.3.4.tar.gz
@@ -58,7 +72,7 @@ cd vim80/src
 
 ./configure --prefix=/usr/local/vim8 --with-features=huge --enable-cscope --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/usr/local/python2.7.13/lib/python2.7/config --enable-luainterp  --with-lua-prefix=/usr/local/lua5.3.4 --enable-perlinterp --enable-largefile --enable-multibyte --disable-netbeans --enable-cscope >> logs
 
-#./configure --prefix=/usr/local/vim8 \ 
+#./configure --prefix=/usr/local/vim8 \
 #--with-features=huge \
 #--enable-cscope \
 #--enable-rubyinterp \
@@ -70,7 +84,7 @@ cd vim80/src
 #--enable-largefile \
 #--enable-multibyte \
 #--disable-netbeans \
-#--enable-cscope ;\ 
+#--enable-cscope ;\
 #
 make -j 8 && make install
 
@@ -90,8 +104,8 @@ ln -sv /usr/local/python2.7.13/bin/pip /usr/bin/pip
 #python -m pip install SomePackage
 
 #install nodejs npm
-xz -d node-v6.11.0-linux-x64.tar.xz 
-tar -xf node-v6.11.0-linux-x64.tar 
+xz -d node-v6.11.0-linux-x64.tar.xz
+tar -xf node-v6.11.0-linux-x64.tar
 mv node-v6.11.0-linux-x64 /usr/local/
 ln -s /usr/local/node-v6.11.0-linux-x64/bin/node /usr/bin/node
 ln -s /usr/local/node-v6.11.0-linux-x64/bin/npm /usr/bin/npm
