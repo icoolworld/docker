@@ -500,6 +500,45 @@ function installXdebug()
     checkRetval 'install php-extension Xdebug successfully'
     echo '[xdebug]
 zend_extension=xdebug.so
+;开启xdebug
+xdebug.default_enable = 1 
+;强制显示错误,不管php.ini的display_errors配置是否开启
+xdebug.force_display_errors = 1
+xdebug.force_error_reporting = 1
+;显示@符号掩藏的错误信息
+xdebug.scream = 1
+
+;Stack Traces
+;xdebug.collect_params可选值为 0,1,2,3,4,5
+xdebug.collect_params = 4
+;开启比较慢
+;xdebug.collect_vars = 1
+xdebug.dump_globals = 1
+;xdebug.dump.SERVER = REMOTE_ADDR,REQUEST_METHOD
+;xdebug.dump.GET = *
+xdebug.dump.FILES = *
+xdebug.dump.GET = *
+xdebug.dump.POST = *
+xdebug.dump.REQUEST = *
+xdebug.dump.SERVER = *
+xdebug.dump.SESSION = *
+xdebug.dump_undefined = 1
+
+;Code Coverage Analysis代码覆盖率分析
+xdebug.coverage_enable
+
+;Profiling PHP Scripts php性能分析
+xdebug.profiler_enable = 1
+
+ ;Remote Debugging 远程DEBUG,连接服务器调试
+ xdebug.remote_enable = 1
+ ;该remote_host为debug client客户端的IP地址
+ xdebug.remote_host = localhost
+ xdebug.remote_port = 9001
+ ;xdebug.remote_connect_back=1
+ xdebug.remote_autostart=1
+ xdebug.remote_log = /tmp/xdebug.remote.log
+ xdebug.extended_info = 1
 ' >> /usr/local/php-${VERSION}/etc/php.ini
     logToFile "|--> End Install Xdebug..."
 }
