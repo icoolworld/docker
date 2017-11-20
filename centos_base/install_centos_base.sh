@@ -104,16 +104,16 @@ ln -sv /usr/local/python2.7.13/bin/pip /usr/bin/pip
 #python -m pip install SomePackage
 
 #install nodejs npm
-xz -d node-v6.11.0-linux-x64.tar.xz
-tar -xf node-v6.11.0-linux-x64.tar
-mv node-v6.11.0-linux-x64 /usr/local/
-ln -s /usr/local/node-v6.11.0-linux-x64/bin/node /usr/bin/node
-ln -s /usr/local/node-v6.11.0-linux-x64/bin/npm /usr/bin/npm
+xz -d node-v8.9.1-linux-x64.tar.xz
+tar -xf node-v8.9.1-linux-x64.tar
+mv node-v8.9.1-linux-x64 /usr/local/
+ln -s /usr/local/node-v8.9.1-linux-x64/bin/node /usr/bin/node
+ln -s /usr/local/node-v8.9.1-linux-x64/bin/npm /usr/bin/npm
 
 #install cnpm
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 #cnpm install [name]
-ln -s /usr/local/node-v6.11.0-linux-x64/bin/cnpm /usr/bin/cnpm
+ln -s /usr/local/node-v8.9.1-linux-x64/bin/cnpm /usr/bin/cnpm
 
 # install epel yum
 #rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
