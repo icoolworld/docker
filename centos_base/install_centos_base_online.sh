@@ -73,4 +73,25 @@ echo "export TERM=xterm-256color" >> /etc/bashrc
 #--enable-cscope ;\
 #
 
+## install develope tools
+#yum group install "Development Tools"
 
+# ag..
+yum -y install epel-release.noarch
+yum -y install the_silver_searcher
+
+# ack
+yum -y install ack
+
+yum -y install nc
+yum -y install lsof
+yum -y install strace ltrace
+# install dig
+yum install bind-utils
+yum -y install gdb
+# install sar
+yum -y install sysstat && sar -o 2 3
+yum -y install telnet
+
+cd /
+rm -rf /data
