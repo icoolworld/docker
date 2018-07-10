@@ -13,6 +13,7 @@ git clone https://github.com/universal-ctags/ctags.git
 make
 make install # may require extra privileges depending on where to install
 
+# ctags --tag-relative=yes -R --fields=+aimlS --languages=php --PHP-kinds=+cdfint-av --exclude=composer.phar --exclude=*Test.php --exclude=*phpunit* --exclude="\.git"
 
 ## install pip
 cd ../
