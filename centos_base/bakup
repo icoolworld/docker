@@ -25,7 +25,7 @@ make -j 8 && make install PREFIX=/usr/local/luajit2.0.5
 ln -s /usr/local/luajit2.0.5/bin/luajit /usr/bin/luajit
 
 
-
+cd ../
 git clone https://github.com/vim/vim.git
 cd vim/src/
 ./configure --prefix=/usr/local/vim8 --with-features=huge --enable-cscope --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/usr/local/python2.7.13/lib/python2.7/config --enable-luainterp  --with-lua-prefix=/usr/local/lua5.3.4 --enable-perlinterp --enable-largefile --enable-multibyte --disable-netbeans --enable-cscope >> logs
