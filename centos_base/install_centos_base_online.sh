@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # centos初始化一些环境，安装一些基础的类库等
-yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm;
+yum -y install wget curl tar zip unzip xz make gcc git perl perl-ExtUtils-Embed ruby pcre-devel openssl openssl-devel subversion deltarpm python-dev;
 yum -y install libtool automake autoconf install gcc-c++;
 yum -y install libxml2-devel zlib-devel bzip2 bzip2-devel;
 yum -y install ncurses-devel readline-devel;
@@ -49,7 +49,7 @@ make -j 8 && make install PREFIX=/usr/local/luajit2.0.5
 cd ../
 git clone https://github.com/vim/vim.git
 cd vim/src/
-./configure --prefix=/usr/local/vim8 --with-features=huge --enable-cscope --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/usr/local/python2.7.13/lib/python2.7/config --enable-luainterp  --with-lua-prefix=/usr/local/lua5.3.4 --enable-perlinterp --enable-largefile --enable-multibyte --disable-netbeans --enable-cscope >> logs
+./configure --prefix=/usr/local/vim8 --with-features=huge --enable-cscope --enable-rubyinterp --enable-pythoninterp --with-python-config-dir=/usr/lib64/python2.7/config --enable-luainterp  --with-lua-prefix=/usr/local/lua5.3.4 --enable-perlinterp --enable-largefile --enable-multibyte --disable-netbeans --enable-cscope >> logs
 make && make install
 
 ln -s /usr/local/vim8/bin/vim /usr/bin/vim
