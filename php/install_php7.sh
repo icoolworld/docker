@@ -677,6 +677,35 @@ extension=apcu.so
     logToFile "|--> End Install Apcu..."
 }
 
+function installBcmath()
+{
+    logToFile "|--> Install PHP Extension:Bcmath..."
+    cd ${BASEDIR}php-${VERSION}/ext/bcmath
+    /usr/local/php-${VERSION}/bin/phpize
+    ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config
+    make -j 8 && make install
+}
+
+function installBcmath()
+{
+    logToFile "|--> Install PHP Extension:Bcmath..."
+    cd ${BASEDIR}php-${VERSION}/ext/bcmath
+    /usr/local/php-${VERSION}/bin/phpize
+    ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config
+    make -j 8 && make install
+}
+
+function installAmqp()
+{
+    logToFile "|--> Install PHP Extension:amqp..."
+    cd ${BASEDIR}php-${VERSION}/
+    wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz
+    tar zxf rabbitmq-c-0.8.0.tar.gz
+    cd rabbitmq-c-0.8.0
+    ./configure --prefix=/usr/local/rabbitmq-c-0.8.0
+    make && make install
+    pecl install channel://pecl.php.net/amqp-1.9.3
+}
 
 function main()
 {
@@ -698,13 +727,16 @@ function main()
     installOpenssl
     installPgsql
     installApcu
-    #installMongo
-    #if [ $IS_DEVENV -eq 1 ];then
-        #installPhpcs
-        #installPhpUnit
-        #installXdebug
-        #installPhpPear
-    #fi
+    installMongo
+    if [ $IS_DEVENV -eq 1 ];then
+        installPhpcs
+        installPhpUnit
+        installXdebug
+        installPhpPear
+    fi
+    installBcmath
+    installAmqp
+    
     service php-fpm start
     #/usr/local/php-${VERSION}/sbin/php-fpm
     #lsof -i:9000 | wc -l
