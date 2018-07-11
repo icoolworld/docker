@@ -208,7 +208,7 @@ function installPhpFromSource()
         if [ -f ${SOURCEDIR}php-${VERSION}.tar.gz ]; then
             cp ${SOURCEDIR}php-${VERSION}.tar.gz . >> ${LOGFILE} 2>&1
         else
-            wget -c http://cn2.php.net/get/php-${VERSION}.tar.gz/from/this/mirror -O php-7.1.11.tar.gz >> ${LOGFILE} 2>&1
+            wget -c http://cn2.php.net/get/php-${VERSION}.tar.gz/from/this/mirror -O php-${VERSION}.tar.gz >> ${LOGFILE} 2>&1
         fi
         checkRetval "download php-${VERSION}.tar.gz"
     fi
