@@ -684,15 +684,10 @@ function installBcmath()
     /usr/local/php-${VERSION}/bin/phpize
     ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config
     make -j 8 && make install
-}
-
-function installBcmath()
-{
-    logToFile "|--> Install PHP Extension:Bcmath..."
-    cd ${BASEDIR}php-${VERSION}/ext/bcmath
-    /usr/local/php-${VERSION}/bin/phpize
-    ./configure --with-php-config=/usr/local/php-${VERSION}/bin/php-config
-    make -j 8 && make install
+        echo '[bcmath]
+extension=bcmath.so
+' >> /usr/local/php-${VERSION}/etc/php.ini
+    logToFile "|--> End Install bcmath..."
 }
 
 function installAmqp()
@@ -702,9 +697,14 @@ function installAmqp()
     wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c-0.8.0.tar.gz
     tar zxf rabbitmq-c-0.8.0.tar.gz
     cd rabbitmq-c-0.8.0
-    ./configure --prefix=/usr/local/rabbitmq-c-0.8.0
+    #./configure --prefix=/usr/local/rabbitmq-c-0.8.0
+    ./configure
     make && make install
     pecl install channel://pecl.php.net/amqp-1.9.3
+        echo '[amqp]
+extension=amqp.so
+' >> /usr/local/php-${VERSION}/etc/php.ini
+    logToFile "|--> End Install amqp..."
 }
 
 function main()
