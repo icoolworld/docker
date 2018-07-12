@@ -93,5 +93,11 @@ yum -y install gdb
 yum -y install sysstat && sar -o 2 3
 yum -y install telnet
 
+# install sshd service
+yum install -y openssh-server
+systemctl start sshd
+systemctl enable sshd     
+echo root:123456|chpasswd
+
 cd /
 rm -rf /data
