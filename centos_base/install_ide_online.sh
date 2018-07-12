@@ -1,6 +1,21 @@
 #!/bin/bash
 # author ljh
  
+ 
+# php env
+source ../php/install_php7.sh
+
+# python env
+## install pip
+cd ../
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
+# node js npm env
+
+# install mysql client
+yum -y install mysql
+
 # 安装ctags
 
 mkdir -p /data
@@ -15,10 +30,7 @@ make install # may require extra privileges depending on where to install
 
 # ctags --tag-relative=yes -R --fields=+aimlS --languages=php --PHP-kinds=+cdfint-av --exclude=composer.phar --exclude=*Test.php --exclude=*phpunit* --exclude="\.git"
 
-## install pip
-cd ../
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
+
 
 ## install node npm
 
